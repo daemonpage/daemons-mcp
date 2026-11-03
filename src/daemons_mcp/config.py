@@ -1,4 +1,4 @@
-"""Where walkie reads from and writes to. Both can be overridden for testing."""
+"""Where daemons reads from and writes to. Both can be overridden for testing."""
 
 from __future__ import annotations
 
@@ -9,11 +9,11 @@ from pathlib import Path
 
 
 def claude_dir() -> Path:
-    return Path(os.environ.get("WALKIE_CLAUDE_DIR", Path.home() / ".claude"))
+    return Path(os.environ.get("DAEMONS_CLAUDE_DIR", Path.home() / ".claude"))
 
 
 def home() -> Path:
-    path = Path(os.environ.get("WALKIE_HOME", Path.home() / ".walkie"))
+    path = Path(os.environ.get("DAEMONS_HOME", Path.home() / ".daemon" / "mcp"))
     path.mkdir(parents=True, exist_ok=True, mode=0o700)
     return path
 

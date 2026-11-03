@@ -1,7 +1,7 @@
 """The MCP server the Claude app connects to.
 
 It has no tool that runs code, starts an agent or messages anyone. The only
-things it can write are bounty files and notes, both inside ~/.walkie.
+things it can write are bounty files and notes, both inside ~/.daemon/mcp.
 """
 
 from __future__ import annotations
@@ -30,7 +30,7 @@ INSTRUCTIONS = (
 
 def build() -> FastMCP:
     mcp = FastMCP(
-        "walkie",
+        "daemons",
         instructions=INSTRUCTIONS,
         stateless_http=True,
         streamable_http_path="/mcp",
@@ -123,7 +123,7 @@ def keep_index_fresh(only: list[str], every: int = 60) -> None:
             try:
                 index.update(only)
             except Exception as e:  # a bad transcript must not take the server down
-                print(f"walkie: index update failed: {e}", flush=True)
+                print(f"daemons: index update failed: {e}", flush=True)
             time.sleep(every)
 
     threading.Thread(target=loop, daemon=True).start()

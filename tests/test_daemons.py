@@ -2,8 +2,8 @@ import json
 
 import pytest
 
-from walkie import bounties, index
-from walkie.redact import redact
+from daemons_mcp import bounties, index
+from daemons_mcp.redact import redact
 
 
 def line(kind, text, **extra):
@@ -14,8 +14,8 @@ def line(kind, text, **extra):
 @pytest.fixture
 def env(tmp_path, monkeypatch):
     claude = tmp_path / "claude"
-    monkeypatch.setenv("WALKIE_CLAUDE_DIR", str(claude))
-    monkeypatch.setenv("WALKIE_HOME", str(tmp_path / "walkie"))
+    monkeypatch.setenv("DAEMONS_CLAUDE_DIR", str(claude))
+    monkeypatch.setenv("DAEMONS_HOME", str(tmp_path / "daemons"))
     project = claude / "projects" / "-work-app"
     (project / "memory").mkdir(parents=True)
     (project / "s1.jsonl").write_text("\n".join([

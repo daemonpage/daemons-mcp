@@ -23,14 +23,14 @@ def post(path, method, params=None):
 def secret(tmp_path_factory):
     tmp = tmp_path_factory.mktemp("w")
     mp = pytest.MonkeyPatch()
-    mp.setenv("WALKIE_CLAUDE_DIR", str(tmp / "claude"))
-    mp.setenv("WALKIE_HOME", str(tmp / "walkie"))
+    mp.setenv("DAEMONS_CLAUDE_DIR", str(tmp / "claude"))
+    mp.setenv("DAEMONS_HOME", str(tmp / "daemons"))
     project = tmp / "claude" / "projects" / "p"
     project.mkdir(parents=True)
     (project / "s.jsonl").write_text(json.dumps({
         "type": "user", "cwd": "/p", "timestamp": "2026-01-01T00:00:00Z",
         "message": {"content": "my key is sk-ant-abcdefghijklmnopqrstuvwxyz about otters"}}))
-    from walkie import config, index, server
+    from daemons_mcp import config, index, server
     index.update()
     srv = uvicorn.Server(uvicorn.Config(server.app(), host="127.0.0.1", port=PORT, log_level="error"))
     threading.Thread(target=srv.run, daemon=True).start()
@@ -79,5 +79,5 @@ def test_write_paths_round_trip(secret):
 def test_client_handshake(secret):
     result = post(f"/{secret}", "initialize", {
         "protocolVersion": "2025-06-18", "capabilities": {}, "clientInfo": {"name": "t", "version": "1"}})
-    assert result["serverInfo"]["name"] == "walkie"
+    assert result["serverInfo"]["name"] == "daemons"
     assert "get_current_context" in result["instructions"]
