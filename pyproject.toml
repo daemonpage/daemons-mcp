@@ -1,7 +1,7 @@
 [project]
 name = "daemons-mcp"
 version = "0.1.0"
-description = "Give Claude voice mode what it's missing: everything you've been doing in Claude Code."
+description = "Connect Claude Code to Claude voice mode: a custom connector that lets the Claude app search your sessions and save tasks."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }

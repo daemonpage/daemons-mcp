@@ -1,6 +1,6 @@
 # daemons-mcp
 
-Give Claude voice mode what it's missing: everything you've been doing in Claude Code.
+**Connect Claude Code to Claude voice mode.** Give the Claude mobile app what it's missing: everything you've been doing in Claude Code.
 
 My context and capabilities were all in Claude Code on my server, but the Claude app couldn't see any of it, so I couldn't think out loud with voice mode about what I was actually building. This connects the two.
 
@@ -30,6 +30,28 @@ uvx --from git+https://github.com/daemonpage/daemons-mcp daemons install-skill
 ```
 
 daemons has to stay running for the connector to work, so it suits a computer that stays on.
+
+## Can I use Claude voice mode with Claude Code?
+
+Not directly: voice mode in the Claude app can't see your Claude Code sessions. It can use connected tools, though, and [Anthropic says](https://support.claude.com/en/articles/11101966-using-voice-mode-on-claude-mobile-apps) they work the same way in voice mode as in text chat. daemons-mcp is a custom connector (a remote MCP server) that gives the app access to your sessions.
+
+So you can ask out loud things like:
+
+- "What was I working on yesterday in Claude Code?"
+- "What did we decide about the payment retry?"
+- "Save that as a task to build later."
+
+## How it compares
+
+| Tool | Best for | Difference |
+|---|---|---|
+| **daemons-mcp** | Thinking out loud with your Claude Code context, then saving tasks | One command, no sign-in step. Reads and saves tasks only, so it can't run anything on your computer |
+| [claude-voice](https://github.com/roykollensvendsen/claude-voice) | Driving Claude Code sessions by voice from your phone | Can start sessions and send them tasks. Uses OAuth and Tailscale Funnel; GPL |
+| [Remote Control](https://code.claude.com/docs/en/remote-control) | Steering a live session from the app | Official and built in, works on one session at a time rather than searching your history |
+| [VoiceMode](https://github.com/mbailey/voicemode) | Talking to Claude Code at your computer | Adds speech inside Claude Code; doesn't connect to the Claude app's own voice mode |
+| [claude-historian](https://github.com/Vvkmnn/claude-historian), [claudex](https://github.com/kunwar-shah/claudex) | Searching past sessions from inside Claude Code | Run locally for Claude Code rather than as a connector for the app |
+
+If you want your phone to run code, use claude-voice. If you'd rather it couldn't, use this.
 
 ## Tools
 
@@ -88,6 +110,7 @@ uv venv && uv pip install -e '.[dev]'
 ## Limits
 
 - Search matches keywords, not meaning.
+- Voice mode hasn't been tested end to end by this project yet; the connector has been tested in the Claude app's text chat.
 - It reads Claude Code's transcript files, which aren't a documented format and could change.
 
-Not affiliated with or endorsed by Anthropic. MIT licensed.
+More at [arthurcamara.com/daemons-mcp](https://arthurcamara.com/daemons-mcp/). Not affiliated with or endorsed by Anthropic. MIT licensed.
