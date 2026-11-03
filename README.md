@@ -1,8 +1,8 @@
 # daemons-mcp
 
-The plumbing of [Daemon](https://github.com/daemonpage/daemon), starting with one link: your Claude Code and your Claude app.
+Give Claude voice mode what it's missing: everything you've been doing in Claude Code.
 
-My context and capabilities were all in Claude Code on my server, but the Claude app couldn't see any of it, so I couldn't think out loud with voice mode about what I was actually building. This connects the two. As Daemon grows, the same link is where its hardware and character memory will plug in; none of that is here yet.
+My context and capabilities were all in Claude Code on my server, but the Claude app couldn't see any of it, so I couldn't think out loud with voice mode about what I was actually building. This connects the two.
 
 It runs next to Claude Code and gives the Claude app (phone, web, desktop) a connector that can:
 
