@@ -19,7 +19,7 @@ You need [uv](https://docs.astral.sh/uv/) and [cloudflared](https://developers.c
 uvx --from git+https://github.com/Camaraarthur/walkie walkie start
 ```
 
-It indexes your sessions and prints a connector URL. In the Claude app, go to **Settings > Connectors > Add custom connector** and paste it. There is no sign-in step.
+It indexes your sessions and prints a connector URL. In the Claude app, go to **Settings > Connectors > Add custom connector** and paste it. There is no sign-in step. A new tunnel address can take a minute or two to start working.
 
 Then ask Claude: *"what have I been working on?"*
 
